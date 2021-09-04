@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "178954569523",
+    "firebase_url": "https://myamcappsaham-default-rtdb.firebaseio.com",
+    "project_id": "myamcappsaham",
+    "storage_bucket": "myamcappsaham.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178954569523:android:07c391acf043871a4c6046",
+        "android_client_info": {
+          "package_name": "com.myamc.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "178954569523-6iqr7jpsk0c28tile2mnt601j4e7bvr2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBziCq4D9no2zsZph9FHerYUeQWmv1e8CQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "178954569523-6iqr7jpsk0c28tile2mnt601j4e7bvr2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
