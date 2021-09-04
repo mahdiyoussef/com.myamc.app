@@ -1,0 +1,1 @@
+# com.myamc.app
