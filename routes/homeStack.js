@@ -5,7 +5,10 @@ import Registre from "../compenants/registration";
 import profiler from "../compenants/rpage";
 import profilec from "../compenants/profile";
 import navbutton from "../compenants/navbutton";
+import dossiers from "../compenants/dossiers";
+import uploaddoc from "../compenants/uplaod";
 const screens={
+    
     seConnecter:{
         screen:login
     },
@@ -20,9 +23,14 @@ const screens={
     },
     Navigation:{
         screen:navbutton
-    }
+    },
     
-    
+    MesDossiers:{
+        screen:dossiers
+    },
+    Envoyer:{
+        screen:uploaddoc
+    },
 }
 const HomeStack = createStackNavigator(screens);
 

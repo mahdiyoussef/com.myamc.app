@@ -9,7 +9,7 @@ import profiler from './rpage';
 import Registre from './registration';
 import './firebase/firebase';
 import profilec from './profile';
-import showuser from './linkuser';
+
 
 export default function login ({navigation}){
   const [data, setData] = useState('');

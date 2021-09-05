@@ -29,15 +29,13 @@ export default function profiler ({navigation}){
     const randomkeys=()=>{
         return Math.floor(Math.random() * 10000) + 1
     }
-    const onPressHandlerpro=() =>{
-        navigation.navigate('MonCompte');
-    };
+    
     
     return(
         <View>
             <View style={styles.nav}>
                 <TouchableOpacity onPress={()=>{
-                    navigation.navigate('Navigation')
+                    navigation.navigate('Navigation',{id:navigation.getParam('id')})
                 }}><Image source={require('../images/square.png')} style={{
                     margin:8
                 }} tintColor='white' /></TouchableOpacity>
