@@ -42,7 +42,7 @@ export default function uploaddoc({navigation}){
         <Text style={styles.addfiletitle}><Image source={require('../images/add-file.png')}/>Envoyer un dossier</Text>
         </View>
         <Text style={styles.title1}>Envoyer Vous Dossier Medicales Avec Toutes Facilité</Text>
-        <TextInput placeholder="Numero de Dossier" style={styles.inpt}/>
+        <TextInput placeholder="Numero de Dossier" keyboardType='numeric' style={styles.inpt}/>
         <TextInput placeholder="date de Consultation Ex: 21-08-2021" style={styles.inpt}/>
         <Text style={styles.title1}>Si le personne malade est Votre femme/homme Tapez 'C1',si votre fils/fille Tapez son Numero
         Ex:02</Text>
@@ -50,6 +50,9 @@ export default function uploaddoc({navigation}){
         <Text style={styles.title1}>scannez votre dossier sous form .pdf</Text>
         <TouchableOpacity>
             <Text style={styles.import}><Image source={require('../images/plus.png')}/>{' '}Choisir le dossier pdf</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+            <Text style={styles.send}><Image source={require('../images/send.png')}/>{' '}Envoyer</Text>
         </TouchableOpacity>
     </View>)
 }
@@ -96,5 +99,16 @@ const styles=StyleSheet.create({
         fontFamily:'jl',
         marginHorizontal:5,marginTop:8,
         textAlign:'center'
-    }
+    },
+    send:{
+      fontSize:25,
+      color:'white',
+      paddingBottom:20,
+      borderRadius:12,
+      backgroundColor:'#0a3d62',
+      paddingLeft:5,
+      fontFamily:'jl',
+      marginHorizontal:5,marginTop:8,
+      textAlign:'center'
+  }
   })

@@ -8,7 +8,9 @@ import navbutton from "../compenants/navbutton";
 import dossiers from "../compenants/dossiers";
 import uploaddoc from "../compenants/uplaod";
 const screens={
-    
+    Envoyer:{
+        screen:uploaddoc
+    },
     seConnecter:{
         screen:login
     },
@@ -28,9 +30,7 @@ const screens={
     MesDossiers:{
         screen:dossiers
     },
-    Envoyer:{
-        screen:uploaddoc
-    },
+    
 }
 const HomeStack = createStackNavigator(screens);
 
