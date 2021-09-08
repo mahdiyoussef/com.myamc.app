@@ -9,51 +9,54 @@ import { render } from 'react-dom';
 import profilec from './profile';
 import navbutton from './navbutton';
 import * as Font from 'expo-font';
-export default function dossiers({navigation}){
-  Font.loadAsync({
-    'query': require('../assets/fonts/query.ttf'),
-    'jl':require('../assets/fonts/JosefinSans-Regular.ttf')
-
-})
-useEffect(() => {
-  printds();
+export default class dossiers extends Component{
   
-}, []);
-const [designers, setDesigners] = useState([]);
-    
+  constructor(props){
+    super(props);
+    this.state={ 
+    list:[],
+    } }
+     componentDidMount(){
+       firebase.database().ref('/dossiermedicales').on('value', (snapshot) =>{
+         var li = []
+         snapshot.forEach((dossier)=>{
+           if(dossier.val().id===this.props.navigation.getParam('id')){
+          /*li.push({
+           npm:dossier.val().npm,
+           nd: dossier.val().nd,
+           id:dossier.val().id,
+           ad:dossier.val().anneed,
+           jd:dossier.val().jourd,
+           md:dossier.val().moisd,
 
-    
-function printds() {
-        var users = firebase.database().ref('/dossiermedicales/');
-        users.on('value', (snapshot) => {
-            snapshot.forEach((snap) => {
-                const userObject = snap.val();
-                const role = userObject['id'];
-                console.log(role);
-                if (role === navigation.getParam('id')) {
-                  console.log(userObject.nd);
-                    const newDesigners = [...designers, userObject];
-                    setDesigners(newDesigners);
-                }
-            });
-        });
-    }
+         })*/
+         li.push(dossier.val())
+         }
+       })
+      this.setState({list:li})
+     })
+    }  
+  render(){
 
   return(<View style={styles.con}>
     <View style={{marginHorizontal:5,marginTop:8}}>
     <Text style={styles.navway2}><Image source={require('../images/jn.png')}/>{' '}Mes Dossiers</Text>
     </View>
     <View>
-      <FlatList data={designers} renderItem={item=>(
-      <TouchableOpacity>
-            <Image source={require('../images/attacher.png')}/>
-            <Text>Numero du dossier{item.nd}</Text>
-          </TouchableOpacity>)}/>
-          
+    <FlatList
+          data={this.state.list}
+          keyExtractor={(item)=>item.key}
+          renderItem={({item})=>{
+             return(
+                <View>
+                   <Text>{item.id} {'\n'} {item.nd}</Text>
+                </View>)
+             }}/>
        
     </View>
     </View>)
-}
+}}
+
 
 
 const styles=StyleSheet.create({
