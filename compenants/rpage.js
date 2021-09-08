@@ -16,14 +16,20 @@ export default function profiler ({navigation}){
     let nameR='Youssef mahdi'
     let msgr="Ajoute un dossier"
     const [dossier,getDossier]=useState([])
-    var date = new Date().getDate();
-            var month = new Date().getMonth() + 1; //Current Month
-            var year = new Date().getFullYear(); //Current Year
-            var hours = new Date().getHours(); //Current Hours
-            var min = new Date().getMinutes(); //Current Minutes
-            var sec = new Date().getSeconds(); //Current Seconds
-    ;
-    
+    function dossiers() {
+        var dossiers = firebase.database().ref('/dossiermedicales');
+        users.on('value', (snapshot) => {
+            snapshot.forEach((snap) => {
+                const userObject = snap.val();
+                const id = userObject['id'];
+                console.log(id);
+                if (id === navigation.getParam('id')) {
+                    const newDesigners = [...dossier, userObject];
+                    getDossier(newDesigners);
+                }
+            });
+        });
+    }
 
    
     const randomkeys=()=>{

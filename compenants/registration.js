@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import { StyleSheet,ImageBackground,Text, View,TextInput,Button,TouchableOpacity,Image,Picker,Alert} from 'react-native';
 import firebase from 'firebase';
+import * as Font from 'expo-font';
 /* Main function */
 export default function Registre(){
 
@@ -14,6 +15,11 @@ export default function Registre(){
           tags: payload.tags
         });
     }
+    Font.loadAsync({
+        'query': require('../assets/fonts/query.ttf'),
+        'jl':require('../assets/fonts/JosefinSans-Regular.ttf')
+    
+    })
     let msg1='Tapez votre Nom';
     let msg2='Tapez votre PreNom';
     let msg3='Tapez Votre CIN';
@@ -31,7 +37,7 @@ export default function Registre(){
     let cadre;
     const Push = () => {
         var RandomNumber = Math.floor(Math.random() * 10002) + 1 ;
-        firebase.database().ref('demandes/'+RandomNumber).set({
+        firebase.database().ref('demandesEnregistrement/'+RandomNumber).set({
           objet:"Demandes d'Enregistrement",
           namec : name,
           ncin:cin,
@@ -50,7 +56,10 @@ export default function Registre(){
     return(
         
         <View style={styles.container}>
-            <Image source={require('../images/log-in.png')}/>
+            <View style={styles.titletop}>
+             <Image source={require('../images/log-in.png')}/><Text style={{fontFamily:'jl',fontSize:30,color:'white'}}>Remplire le formulaire{'\n'}complétement</Text>   
+            </View>
+            
             <TextInput value={name} onChangeText={(text) => getname(text)} placeholder={msg1} style={styles.inpn}/>
             <TextInput value={prenom} onChangeText={(text) => getprenom(text)} placeholder={msg2} style={styles.inpn}/>
             <TextInput value={cin} placeholder={msg3} style={styles.inpn} onChangeText={(text) => getcin(text)}/>
@@ -58,9 +67,11 @@ export default function Registre(){
             <TextInput value={ntel} onChangeText={(text) => getntel(text)} placeholder={msg5} style={styles.inpn}/>
             <TextInput value={cd} onChangeText={(text) => getcd(text)} placeholder={'Tapez votre fondation'} style={styles.inpn}/>
             
-            <TouchableOpacity style={{borderRadius:6,backgroundColor:'white',alignItems:'center',marginTop:30}} onPress={Push}>
-                <Text style={{color:'black',fontSize:16,textAlign:'center',width:270,paddingVertical:10}}>
-                   S'Enregistrer
+            <TouchableOpacity style={{
+                borderRadius:6,backgroundColor:'white',alignItems:'center',marginTop:30,backgroundColor:'#3c6382',width:300,height:50
+                }} onPress={Push}>
+                <Text style={{color:'white',fontSize:25,textAlign:'center',width:270,fontFamily:'jl'}}><Image source={require('../images/contact.png')}/>{' '}
+                   S'inscrire
                 </Text>
             </TouchableOpacity>
             
@@ -70,7 +81,6 @@ export default function Registre(){
 const styles=StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor:'#00b894',
         alignItems: 'center',
         justifyContent: 'center',
         width:'100%',
@@ -78,11 +88,23 @@ const styles=StyleSheet.create({
     },
     inpn:{
         marginTop:30,
-        borderRadius:6,
-        fontSize:16,
-        backgroundColor:'white',
-        width:270,
-        textAlign:'center',
-        height:40
+        fontSize:20,
+        borderRadius:12,
+        borderWidth:4,
+        borderColor:'#82ccdd',
+        /*paddingVertical:10,
+        paddingHorizontal:90,*/
+        width:300,
+        height:50,
+        textAlign:'center'
+        
+    },
+    titletop:{
+        marginBottom:20,
+        marginTop:40,
+        borderRadius:12,
+        backgroundColor:'#079992',
+        flexDirection:'row',
+        padding:10
     }
 });

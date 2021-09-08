@@ -1,9 +1,9 @@
 import Expo from 'expo';
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { Component } from 'react';
 import { StyleSheet,ImageBackground,Text, View,TextInput,Button,TouchableOpacity,Image,AppRegistry,Linking, ScrollView,FlatList,Alert} from 'react-native';
 import {StackNavigator,navigation} from 'react-navigation';
-;
+import firebase from 'firebase';
 import 'react-native-gesture-handler';
 import { render } from 'react-dom';
 import profilec from './profile';
@@ -15,14 +15,42 @@ export default function dossiers({navigation}){
     'jl':require('../assets/fonts/JosefinSans-Regular.ttf')
 
 })
+useEffect(() => {
+  printds();
+  
+}, []);
+const [designers, setDesigners] = useState([]);
+    
+
+    
+function printds() {
+        var users = firebase.database().ref('/dossiermedicales/');
+        users.on('value', (snapshot) => {
+            snapshot.forEach((snap) => {
+                const userObject = snap.val();
+                const role = userObject['id'];
+                console.log(role);
+                if (role === navigation.getParam('id')) {
+                  console.log(userObject.nd);
+                    const newDesigners = [...designers, userObject];
+                    setDesigners(newDesigners);
+                }
+            });
+        });
+    }
+
   return(<View style={styles.con}>
     <View style={{marginHorizontal:5,marginTop:8}}>
     <Text style={styles.navway2}><Image source={require('../images/jn.png')}/>{' '}Mes Dossiers</Text>
     </View>
     <View>
-      <TouchableOpacity style={{marginHorizontal:5,marginTop:8}} onPress={()=>navigation.navigate('Envoyer',{id:navigation.getParam('id')})}>
-        <Text style={styles.addfile}><Image source={require('../images/add-file.png')}/>Envoyer un dossier</Text>
-      </TouchableOpacity>
+      <FlatList data={designers} renderItem={item=>(
+      <TouchableOpacity>
+            <Image source={require('../images/attacher.png')}/>
+            <Text>Numero du dossier{item.nd}</Text>
+          </TouchableOpacity>)}/>
+          
+       
     </View>
     </View>)
 }

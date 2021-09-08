@@ -6,11 +6,7 @@ import profiler from "../compenants/rpage";
 import profilec from "../compenants/profile";
 import navbutton from "../compenants/navbutton";
 import dossiers from "../compenants/dossiers";
-import uploaddoc from "../compenants/uplaod";
 const screens={
-    Envoyer:{
-        screen:uploaddoc
-    },
     seConnecter:{
         screen:login
     },

@@ -1,6 +1,6 @@
 
 import Expo from 'expo';
-import React,{ Component,useState } from 'react';
+import React,{ Component,useState,useEffect } from 'react';
 import { StyleSheet,ImageBackground,Text, View,TextInput,Button,TouchableOpacity,Image,AppRegistry,Linking,Alert} from 'react-native';
 import {StackNavigator, useTheme} from 'react-navigation';
 import firebase from 'firebase';
@@ -9,18 +9,15 @@ import profiler from './rpage';
 import Registre from './registration';
 import './firebase/firebase';
 import profilec from './profile';
-
+import * as Font from 'expo-font';
 
 export default function login ({navigation}){
   const [data, setData] = useState('');
+  Font.loadAsync({
+    'query': require('../assets/fonts/query.ttf'),
+    'jl':require('../assets/fonts/JosefinSans-Regular.ttf')
 
-  const uservalue=()=>{
-    console.log('1301')
-    return usr;
-  }
-  const logtocomp = () => {
-    setData(usr);
-  }  
+})
       
   const [designers, setDesigners] = useState([]);
     function printUsers() {
@@ -37,7 +34,7 @@ export default function login ({navigation}){
                       console.log(user.mdp)
                       if(user.mdp === mdp){
                         navigation.navigate('MyAMC',user);
-                        
+                        console.log('correcrt mdp')
                         
                       };
                     });
@@ -58,25 +55,40 @@ export default function login ({navigation}){
    
   
   return(<View style={styles.container}>
+        <View style={styles.titletop}>
+          <Image source={require('../images/login.png')}/>
+          <Text>{' '}</Text>
+          <Text style={{
+            fontSize:30,
+            color:'white',
+            fontFamily:'jl'
+          }}>Se Connecter à Votre {'\n'}Compte Amc</Text>
+        </View>
         
-        <View style={styles.special}><Image  source={require('../images/logo.png')} /></View>
         <View style={styles.inpone}>
-          <Image source={require('../images/id.png')} />
-          <TextInput  placeholder="Identifiant" value={usr} onChangeText={(text)=>getusr(text)}  /></View>
+          <Image source={require('../images/id-card.png')} style={{
+            marginRight:20,
+            }}/>
+          <TextInput  placeholder="Identifiant" value={usr} onChangeText={(text)=>getusr(text)} style={{
+            fontFamily:'jl',fontSize:20
+          }} /></View>
         <View style={styles.inptwo}>
-          <Image source={require('../images/lock.png')} />
-          <TextInput  placeholder="Mot de Passe" value={mdp} onChangeText={(text)=>getmdp(text)}/></View>
+          <Image source={require('../images/padlock.png')} style={{marginRight:20}}  />
+          <TextInput  placeholder="Mot de Passe" value={mdp} onChangeText={(text)=>getmdp(text)}style={{
+            fontFamily:'jl',fontSize:20
+          }}/></View>
         <TouchableOpacity style={styles.btno} onPress={printUsers} >
-        <Text style = {{color:'white',fontSize:20,paddingHorizontal:50,paddingVertical:10}} >
+        
+        <Text style = {{color:'white',fontSize:30,fontFamily:'jl'}} ><Image source={require('../images/login12.png')}/>{' '}
         Se Connecter
       </Text>
       </TouchableOpacity >
-        <Text style={styles.txts}>si vous n'avez pas un compte cliquez sur :</Text>
+        <Text style={styles.txts}>Pour S'inscrire sur le Service maladie{'\n'}complémentaire  cliquer sur:</Text>
 
           
         <TouchableOpacity style={styles.btnt} onPress={onPressHandlersign}>
-        <Text style={{color:'white',fontSize:20,paddingHorizontal:50,paddingVertical:10}}>
-        Créez Votre Compte
+        <Text style={{color:'white',fontSize:30,fontFamily:'jl'}}>
+        <Image source={require('../images/contact.png')}/>{' '}S'inscrire
       </Text>
         </TouchableOpacity >
         
@@ -93,60 +105,59 @@ export default function login ({navigation}){
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    
-    alignItems: 'center',
-    justifyContent: 'center',
-    width:'100%',
-    height:'100%'
+    alignItems:'center'
   },
   inpone:{
     marginTop:60,
-    fontSize:20,
-    borderRadius:6,
-    borderWidth:1,
-    color:'#535c68',
-    borderColor:'#535c68',
-    /*paddingVertical:10,
-    paddingHorizontal:90,*/
-    width:250,
+    fontSize:40,
+    borderRadius:12,
+    borderWidth:4,
+    borderColor:'#0097e6',
+    width:300,
     height:50,
     padding:5,
-    
-    alignItems:'center'
+    flexDirection:"row"
     
   } ,
   inptwo:{
     marginTop:30,
     fontSize:20,
-    borderRadius:6,
-    borderWidth:1,
-    color:'#535c68',
-    borderColor:'#535c68',
+    borderRadius:12,
+    borderWidth:4,
+    color:'#9980FA',
+    borderColor:'#fbc531',
     /*paddingVertical:10,
     paddingHorizontal:90,*/
-    width:250,
+    width:300,
     height:50,
     padding:5,
-    alignItems:'center'
+    flexDirection:"row"
   },
   btno:{
     marginTop:30,
     fontSize:20,
     borderRadius:6,
-    backgroundColor:'#34495e'
+    backgroundColor:'#34495e',
+    fontFamily:'jl',
+    width:300,
+    height:50,
+    alignItems:'center'
     
   },
   btnt: {
     marginTop:30,
     fontSize:20,
     borderRadius:6,
-    backgroundColor:'#34495e'
-
+    backgroundColor:'#34495e',
+    fontFamily:'jl',
+    width:300,
+    height:50,
+    alignItems:'center'
   },
   txts:{
     marginTop:30,
-    fontSize:20
+    fontSize:20,
+    fontFamily:'jl'
   },
   title:{
     fontFamily:"Roboto",
@@ -164,5 +175,13 @@ const styles = StyleSheet.create({
     top:0,
     
   }
-  
+  ,titletop:{
+    marginBottom:20,
+    marginTop:40,
+    borderRadius:12,
+    backgroundColor:'#079992',
+    fontFamily:'jl',
+    flexDirection:'row',
+    padding:10
+  }
 });
