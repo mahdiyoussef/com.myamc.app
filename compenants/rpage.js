@@ -65,7 +65,7 @@ export default class profiler extends Component{
             <View>
                <Text style={styles.files}> <Image source={require('../images/dossier.png')}/>  Mes Dossiers Medicales</Text>
                <FlatList style={styles.flatg}
-                    data={this.state.list}
+                    data={this.state.list.reverse()}
                     keyExtractor={(item)=>item.key}
                     renderItem={({item})=>{
                         return(<TouchableOpacity >
@@ -82,7 +82,7 @@ export default class profiler extends Component{
              </View>
              <View>
              <FlatList style={{height:200}}
-                    data={this.state.ls}
+                    data={this.state.ls.reverse()}
                     keyExtractor={(item)=>item.key}
                     renderItem={({item})=>{
                         return(<TouchableOpacity >

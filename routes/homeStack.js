@@ -7,6 +7,7 @@ import profilec from "../compenants/profile";
 import navbutton from "../compenants/navbutton";
 import dossiers from "../compenants/dossiers";
 import demandes from "../compenants/demande";
+import detailsdossier from "../compenants/detailsdossier";
 const screens={
     seConnecter:{
         screen:login
@@ -29,6 +30,9 @@ const screens={
     },
     MesDemandes:{
         screen:demandes
+    },
+    Details:{
+        screen:detailsdossier
     }
 }
 const HomeStack = createStackNavigator(screens);

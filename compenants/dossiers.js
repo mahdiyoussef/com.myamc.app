@@ -39,7 +39,8 @@ export default class dossiers extends Component{
           data={this.state.list}
           keyExtractor={(item)=>item.key}
           renderItem={({item})=>{
-             return(<TouchableOpacity >
+             return(
+             <TouchableOpacity onPress={()=>this.props.navigation.navigate('Details',item)}>
                <View style={styles.flatl}><Image source={require('../images/dossier.png')}/>
                <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Dossier:{item.nd}{'\n'}Date de Consultation:{item.jourc}/{item.moisc}/{item.annec}{'\n'}Status:{item.motif}{'\n'}{'<<< Appuyer pour voir les details >>>'}</Text></View>
              </TouchableOpacity>)
