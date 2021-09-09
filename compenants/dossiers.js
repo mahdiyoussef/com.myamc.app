@@ -31,7 +31,7 @@ export default class dossiers extends Component{
   render(){
     
   return(<View style={styles.con}>
-    <View style={{marginHorizontal:5,marginTop:8}}>
+    <View style={{marginHorizontal:5,marginTop:30}}>
     <Text style={styles.navway2}><Image source={require('../images/jn.png')}/>{' '}Mes Dossiers</Text>
     </View>
     <View>

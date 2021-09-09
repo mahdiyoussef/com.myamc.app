@@ -10,7 +10,7 @@ import login from './login';
 
 export default function profilec({navigation}){
     
-     useEffect(() => {
+    useEffect(() => {
         printUsers();
         console.log(designers);
     }, []);
@@ -72,7 +72,7 @@ export default function profilec({navigation}){
 const styles=StyleSheet.create({
     imgp:{
         position:'absolute',
-        top:8,
+        top:30,
         right:8,
     },
     name:{
@@ -93,7 +93,7 @@ const styles=StyleSheet.create({
     },
     con:{
         position:'absolute',
-        top:0,
+        top:30,
         left:0,
         right:0,
         bottom:0,

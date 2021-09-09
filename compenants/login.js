@@ -91,7 +91,9 @@ export default function login ({navigation}){
         <Image source={require('../images/contact.png')}/>{' '}S'inscrire
       </Text>
         </TouchableOpacity >
-        
+        <View style={{
+          position:'absolute',bottom:0
+        }}><Image source={require('../images/saham.png')}/></View>
     
       </View>);
         
@@ -105,7 +107,8 @@ export default function login ({navigation}){
 
 const styles = StyleSheet.create({
   container: {
-    alignItems:'center'
+    alignItems:'center',
+    height:'100%'
   },
   inpone:{
     marginTop:60,

@@ -30,7 +30,7 @@ export default class demandes extends Component{
   render(){
 
   return(<View style={styles.con}>
-    <View style={{marginHorizontal:5,marginTop:8}}>
+    <View style={{marginHorizontal:5,marginTop:30}}>
     <Text style={styles.navway2}><Image source={require('../images/chat.png')}/>{' '}Mes Demandes</Text>
     </View>
     <View>
@@ -38,7 +38,7 @@ export default class demandes extends Component{
           data={this.state.list}
           keyExtractor={(item)=>item.key}
           renderItem={({item})=>{
-             return(<TouchableOpacity >
+             return(<TouchableOpacity onPress={()=>this.props.navigation.navigate('Details',item)} >
                <View style={styles.flatl}><Image source={require('../images/attacher.png')}/>
                <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Demande:{item.nd}{'\n'}Date de depot:{item.jourd}/{item.moisd}/{item.anned}{'\n'}Objet:{item.objet}{'\n'}</Text></View>
              </TouchableOpacity>)

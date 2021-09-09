@@ -63,7 +63,7 @@ export default class profiler extends Component{
                 <Text style={styles.topt}>MyAMC</Text>
             </View>
             <View>
-               <Text style={styles.files}> <Image source={require('../images/dossier.png')}/>  Mes Dossiers Medicales</Text>
+               <Text style={styles.files}><Image source={require('../images/dossier.png')}/>   Mes Dossiers Medicales</Text>
                <FlatList style={styles.flatg}
                     data={this.state.list.reverse()}
                     keyExtractor={(item)=>item.key}
@@ -103,18 +103,19 @@ export default class profiler extends Component{
 
 const styles=StyleSheet.create({
     nav:{
-        backgroundColor:'#27ae60'
+        backgroundColor:'#27ae60',
+        paddingTop:30
     },
     profile:{
         position:'absolute',
-        top:8,
+        top:30,
         right:8
     },
     topt:{
         fontSize:60
         ,color:'white',
         position:'absolute'
-        ,top:8,
+        ,top:30,
         right:120,
         
     }

@@ -13,15 +13,15 @@ export default class detailsdossier extends Component{
   render(){
     const nav=this.props.navigation;
     return(<View>
-      <View style={{marginHorizontal:5,marginTop:8,flexDirection:'row',borderRadius:10,backgroundColor:'#82ccdd',padding:20}}>
+      <View style={{marginHorizontal:5,marginTop:30,flexDirection:'row',borderRadius:10,backgroundColor:'#82ccdd',padding:20}}>
         <Image source={require('../images/details.png')}/>
-        <Text style={{color:'white',fontSize:50,fontFamily:'jl'}}>Details Du dossier</Text>
+        <Text style={{color:'white',fontSize:35,fontFamily:'jl'}}>Details Du dossier</Text>
       </View>
       <View>
         <Text style={styles.infos}>N° Dossier:{nav.getParam('nd')}</Text>
         <Text style={styles.infos}>Nom De Personne Malade:{nav.getParam('npm')}</Text>
         <Text style={styles.infos}>type de maladie:{nav.getParam('mld')}</Text>
-        <Text style={styles.infos}>Montant:{nav.getParam('mntn')}</Text>
+        <Text style={styles.infos}>Montant:{nav.getParam('mntn')} DH</Text>
         <Text style={styles.infos}>Date de Consultaion:{nav.getParam('jourc')}/{nav.getParam('moisc')}/{nav.getParam('annec')}</Text>
         <Text style={styles.infos}>Date de depot:{nav.getParam('jourd')}/{nav.getParam('moisd')}/{nav.getParam('anned')}</Text>
         <Text style={styles.infos}>Motif:{nav.getParam('motif')}</Text>

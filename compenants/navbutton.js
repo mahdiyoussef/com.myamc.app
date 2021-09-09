@@ -16,8 +16,11 @@ import * as Font from 'expo-font';
             'jl':require('../assets/fonts/JosefinSans-Regular.ttf')
 
         })
-    return(<View style={styles.nav}>
-        <TouchableOpacity style={{marginHorizontal:5,marginTop:8}} onPress={()=>navigation.navigate('MyAMC')}>
+    return(
+    
+    <View style={styles.nav}>
+        
+        <TouchableOpacity style={{marginHorizontal:5,marginTop:30}} onPress={()=>navigation.navigate('MyAMC')}>
             <Text style={styles.navway12}>{' '}<Image  source={require('../images/dashboard.png')} />{' '}Dashboard</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{marginHorizontal:5,marginTop:8}} onPress={()=>navigation.navigate('MonCompte',{id:navigation.getParam('id')})}>
