@@ -68,7 +68,7 @@ export default class profiler extends Component{
                     data={this.state.list.reverse()}
                     keyExtractor={(item)=>item.key}
                     renderItem={({item})=>{
-                        return(<TouchableOpacity >
+                        return(<TouchableOpacity onPress={()=>this.props.navigation.navigate('Details',item)}>
                         <View style={styles.flatl}><Image source={require('../images/dossier.png')}/>
                         <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Dossier:{item.nd}{'\n'}Date de Consultation:{item.jourc}/{item.moisc}/{item.annec}{'\n'}Status:{item.motif}{'\n'}{'<<< Appuyer pour voir les details >>>'}</Text></View>
                         </TouchableOpacity>)
@@ -87,7 +87,7 @@ export default class profiler extends Component{
                     renderItem={({item})=>{
                         return(<TouchableOpacity >
                         <View style={styles.flatl}><Image source={require('../images/attacher.png')}/>
-                        <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Demande:{item.nd}{'\n'}Date de depot:{item.jourd}/{item.moisd}/{item.anned}{'\n'}Objet:{item.objet}{'\n'}{'<<< Appuyer pour voir les details >>>'}</Text></View>
+                        <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Demande:{item.nd}{'\n'}Date de depot:{item.jourd}/{item.moisd}/{item.anned}{'\n'}Objet:{item.objet}{'\n'}</Text></View>
                         </TouchableOpacity>)
              }}/>
              </View>

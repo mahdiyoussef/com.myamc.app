@@ -13,7 +13,7 @@ export default class detailsdossier extends Component{
   render(){
     const nav=this.props.navigation;
     return(<View>
-      <View style={{marginHorizontal:5,marginTop:8,flexDirection:'row',borderRadius:10,backgroundColor:'#82ccdd'}}>
+      <View style={{marginHorizontal:5,marginTop:8,flexDirection:'row',borderRadius:10,backgroundColor:'#82ccdd',padding:20}}>
         <Image source={require('../images/details.png')}/>
         <Text style={{color:'white',fontSize:50,fontFamily:'jl'}}>Details Du dossier</Text>
       </View>
