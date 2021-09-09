@@ -24,7 +24,7 @@ import * as Font from 'expo-font';
             <Text style={styles.navway}>{' '}<Image  source={require('../images/teamwork.png')} />{' '}Mon Compte</Text>
         </TouchableOpacity>
             
-        <TouchableOpacity style={{marginHorizontal:5,marginTop:8}}>
+        <TouchableOpacity style={{marginHorizontal:5,marginTop:8}} onPress={()=>navigation.navigate('MesDemandes',{id:navigation.getParam('id')})}>
             <Text style={styles.navway1}>{' '}<Image source={require('../images/chat.png')}/>{' '}Mes Demandes</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{marginHorizontal:5,marginTop:8}} onPress={()=>navigation.navigate('MesDossiers',{id:navigation.getParam('id')})}>

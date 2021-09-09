@@ -9,8 +9,7 @@ import { render } from 'react-dom';
 import profilec from './profile';
 import navbutton from './navbutton';
 import * as Font from 'expo-font';
-export default class dossiers extends Component{
-  
+export default class demandes extends Component{
   
   constructor(props){
     super(props);
@@ -18,21 +17,21 @@ export default class dossiers extends Component{
     list:[],
     } }
      componentDidMount(){
-       firebase.database().ref('/dossiermedicales').on('value', (snapshot) =>{
+       firebase.database().ref('/demandedeclient').on('value', (snapshot) =>{
          var li = []
-         snapshot.forEach((dossier)=>{
-           if(dossier.val().id===this.props.navigation.getParam('id')){
-         li.push(dossier.val())
+         snapshot.forEach((demande)=>{
+           if(demande.val().id===this.props.navigation.getParam('id')){
+         li.push(demande.val())
          }
        })
       this.setState({list:li})
      })
-    } 
+    }  
   render(){
-    
+
   return(<View style={styles.con}>
     <View style={{marginHorizontal:5,marginTop:8}}>
-    <Text style={styles.navway2}><Image source={require('../images/jn.png')}/>{' '}Mes Dossiers</Text>
+    <Text style={styles.navway2}><Image source={require('../images/chat.png')}/>{' '}Mes Demandes</Text>
     </View>
     <View>
     <FlatList
@@ -40,8 +39,8 @@ export default class dossiers extends Component{
           keyExtractor={(item)=>item.key}
           renderItem={({item})=>{
              return(<TouchableOpacity >
-               <View style={styles.flatl}><Image source={require('../images/dossier.png')}/>
-               <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Dossier:{item.nd}{'\n'}Date de Consultation:{item.jourc}/{item.moisc}/{item.annec}{'\n'}Status:{item.motif}{'\n'}{'<<< Appuyer pour voir les details >>>'}</Text></View>
+               <View style={styles.flatl}><Image source={require('../images/attacher.png')}/>
+               <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Demande:{item.nd}{'\n'}Date de depot:{item.jourd}/{item.moisd}/{item.anned}{'\n'}Objet:{item.objet}{'\n'}{'<<< Appuyer pour voir les details >>>'}</Text></View>
              </TouchableOpacity>)
              }}/>
        
@@ -57,7 +56,7 @@ const styles=StyleSheet.create({
     color:'white',
     paddingBottom:10,
     borderRadius:12,
-    backgroundColor:'#079992',
+    backgroundColor:'#ffd32a',
     fontFamily:'jl'
     
 },
