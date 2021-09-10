@@ -50,18 +50,10 @@ export default class profiler extends Component{
     return(
         <View>
             <View style={styles.nav}>
-                <TouchableOpacity onPress={()=>{
-                    this.props.navigation.navigate('Navigation',{id:this.props.navigation.getParam('id')})
-                }}><Image source={require('../images/square.png')} style={{
-                    margin:8
-                }} tintColor='white' /></TouchableOpacity>
-                <Text style={styles.topt}>MyAMC</Text>
-                <TouchableOpacity onPress={()=>{
-                    this.props.navigation.navigate('MonCompte',{id:this.props.navigation.getParam('id')});
-                }} style={styles.profile}><Image  source={require('../images/profileman.png')}  />
-                </TouchableOpacity>
+                <Image source={require('../images/MyAMCHorizontal.png')}/>
                 
             </View>
+            <View>
             <View>
                <Text style={styles.files}><Image source={require('../images/dossier.png')}/>   Mes Dossiers Medicales</Text>
                <FlatList style={styles.flatg}
@@ -94,6 +86,39 @@ export default class profiler extends Component{
              <Text style={styles.ttl}>Nombre Total des Demandes:{this.state.ls.length}
              </Text>
             </View>
+            </View>
+            <View style={{alignItems:'center',marginTop:10}}><View style={styles.navigationbar}>
+            <TouchableOpacity>
+                <View style={styles.btn}>
+                    <Image source={require('../images/nav/ds.png')}/>
+                    <Text style={{fontFamily:'jl'}}>Dashboard</Text>
+                </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                <View style={styles.btn}>
+                    <Image source={require('../images/nav/menu.png')}/>
+                    <Text style={{fontFamily:'jl'}}>Menu</Text>
+                </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                <View style={styles.btn}>
+                    <Image source={require('../images/nav/dossiers.png')}/>
+                    <Text style={{fontFamily:'jl'}}>Mes Dossiers</Text>
+                </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                <View style={styles.btn}>
+                    <Image source={require('../images/nav/verifier.png')}/>
+                    <Text style={{fontFamily:'jl'}}>Mes Demandes</Text>
+                </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                <View style={styles.btn}>
+                    <Image source={require('../images/nav/utilisateur-de-profil.png')}/>
+                    <Text style={{fontFamily:'jl'}}>Profile</Text>
+                </View>
+                </TouchableOpacity>
+            </View></View>
         </View>
     )
        
@@ -103,9 +128,10 @@ export default class profiler extends Component{
 
 const styles=StyleSheet.create({
     nav:{
-        backgroundColor:'#27ae60',
-        paddingTop:30,
-        flexDirection:'row'
+        alignItems:'center',
+        marginTop:35,
+        borderRadius:14,
+        backgroundColor:'#78e08f'
     },
     profile:{
         marginLeft:40
@@ -162,5 +188,14 @@ const styles=StyleSheet.create({
         ,padding:6,
         margin:5,
         flexDirection:'row'
+      }
+      ,navigationbar:{
+          flexDirection:'row',
+          borderRadius:10,
+          backgroundColor:'#f5f6fa'
+      }
+      ,btn:{
+          alignItems:'center',
+          marginRight:10
       }
 })

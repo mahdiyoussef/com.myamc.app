@@ -33,6 +33,7 @@ export default function login ({navigation}){
                     designers.map((user)=>{
                       console.log(user.mdp)
                       if(user.mdp === mdp){
+                        console.log(user.key)
                         navigation.navigate('MyAMC',user);
                         console.log('correcrt mdp')
                         
@@ -64,7 +65,7 @@ export default function login ({navigation}){
             fontFamily:'jl'
           }}>Se Connecter à Votre {'\n'}Compte Amc</Text>
         </View>
-        
+        <Image source={require('../images/MyAMCVertical.png')} />
         <View style={styles.inpone}>
           <Image source={require('../images/id-card.png')} style={{
             marginRight:20,
@@ -91,9 +92,7 @@ export default function login ({navigation}){
         <Image source={require('../images/contact.png')}/>{' '}S'inscrire
       </Text>
         </TouchableOpacity >
-        <View style={{
-          position:'absolute',bottom:0
-        }}><Image source={require('../images/saham.png')}/></View>
+        
     
       </View>);
         

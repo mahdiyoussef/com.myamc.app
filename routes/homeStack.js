@@ -12,50 +12,50 @@ const screens={
     seConnecter:{
         screen:login
         ,navigationOptions: {
-            header: null,
+            headerShown:false,
           }
     },
     Senregistrer:{
         screen: Registre
         ,navigationOptions: {
-            header: null,
+            headerShown:false,
           }
     },
     MyAMC:{
         screen: profiler
         ,navigationOptions: {
-            header: null,
+            headerShown:false,
           }
     },
     MonCompte:{
         screen:profilec
         ,navigationOptions: {
-            header: null,
+            headerShown:false,
           }
     },
     Navigation:{
         screen:navbutton
         ,navigationOptions: {
-            header:null,
+            headerShown:false,
           }
     },
     
     MesDossiers:{
         screen:dossiers
         ,navigationOptions: {
-            header: null,
+            headerShown:false,
           }
     },
     MesDemandes:{
         screen:demandes
         ,navigationOptions: {
-            header: null,
+            headerShown:false,
           }
     },
     Details:{
         screen:detailsdossier
         ,navigationOptions: {
-            header: null,
+            headerShown:false,
           }
     }
 }
