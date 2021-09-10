@@ -74,7 +74,7 @@ export default function login ({navigation}){
           }} /></View>
         <View style={styles.inptwo}>
           <Image source={require('../images/padlock.png')} style={{marginRight:20}}  />
-          <TextInput  placeholder="Mot de Passe" value={mdp} onChangeText={(text)=>getmdp(text)}style={{
+          <TextInput secureTextEntry={true} placeholder="Mot de Passe" value={mdp} onChangeText={(text)=>getmdp(text)}style={{
             fontFamily:'jl',fontSize:20
           }}/></View>
         <TouchableOpacity style={styles.btno} onPress={printUsers} >

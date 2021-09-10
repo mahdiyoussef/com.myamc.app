@@ -55,12 +55,12 @@ export default class profiler extends Component{
                 }}><Image source={require('../images/square.png')} style={{
                     margin:8
                 }} tintColor='white' /></TouchableOpacity>
-
+                <Text style={styles.topt}>MyAMC</Text>
                 <TouchableOpacity onPress={()=>{
                     this.props.navigation.navigate('MonCompte',{id:this.props.navigation.getParam('id')});
                 }} style={styles.profile}><Image  source={require('../images/profileman.png')}  />
                 </TouchableOpacity>
-                <Text style={styles.topt}>MyAMC</Text>
+                
             </View>
             <View>
                <Text style={styles.files}><Image source={require('../images/dossier.png')}/>   Mes Dossiers Medicales</Text>
@@ -104,26 +104,23 @@ export default class profiler extends Component{
 const styles=StyleSheet.create({
     nav:{
         backgroundColor:'#27ae60',
-        paddingTop:30
+        paddingTop:30,
+        flexDirection:'row'
     },
     profile:{
-        position:'absolute',
-        top:30,
-        right:8
+        marginLeft:40
     },
     topt:{
         fontSize:60
         ,color:'white',
-        position:'absolute'
-        ,top:30,
-        right:120,
+        marginLeft:40
         
     }
     ,files:{
         
         fontSize:30
         ,borderRadius:10
-        ,marginTop:10,
+        ,marginTop:25,
         backgroundColor:'#f1c40f'
         ,padding:6,
         margin:5,
