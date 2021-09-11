@@ -10,6 +10,7 @@ import Registre from './registration';
 import './firebase/firebase';
 import profilec from './profile';
 import * as Font from 'expo-font';
+import { isLoaded } from 'expo-font';
 
 export default function login ({navigation}){
   const [data, setData] = useState('');
@@ -33,7 +34,6 @@ export default function login ({navigation}){
                     designers.map((user)=>{
                       console.log(user.mdp)
                       if(user.mdp === mdp){
-                        console.log(user.key)
                         navigation.navigate('MyAMC',user);
                         console.log('correcrt mdp')
                         
@@ -53,7 +53,6 @@ export default function login ({navigation}){
 
   const [usr,getusr]=useState('');
   const [mdp,getmdp]=useState('');
-   
   
   return(<View style={styles.container}>
         <View style={styles.titletop}>

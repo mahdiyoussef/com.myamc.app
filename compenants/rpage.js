@@ -48,6 +48,7 @@ export default class profiler extends Component{
     
     
     return(
+
         <View>
             <View style={styles.nav}>
                 <Image source={require('../images/MyAMCHorizontal.png')}/>
@@ -88,31 +89,31 @@ export default class profiler extends Component{
             </View>
             </View>
             <View style={{alignItems:'center',marginTop:10}}><View style={styles.navigationbar}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate('MyAMC',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
                     <Image source={require('../images/nav/ds.png')}/>
                     <Text style={{fontFamily:'jl'}}>Dashboard</Text>
                 </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Navigation',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
                     <Image source={require('../images/nav/menu.png')}/>
                     <Text style={{fontFamily:'jl'}}>Menu</Text>
                 </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('MesDossiers',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
                     <Image source={require('../images/nav/dossiers.png')}/>
                     <Text style={{fontFamily:'jl'}}>Mes Dossiers</Text>
                 </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('MesDemandes',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
                     <Image source={require('../images/nav/verifier.png')}/>
                     <Text style={{fontFamily:'jl'}}>Mes Demandes</Text>
                 </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('MonCompte',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
                     <Image source={require('../images/nav/utilisateur-de-profil.png')}/>
                     <Text style={{fontFamily:'jl'}}>Profile</Text>
@@ -192,7 +193,7 @@ const styles=StyleSheet.create({
       ,navigationbar:{
           flexDirection:'row',
           borderRadius:10,
-          backgroundColor:'#f5f6fa'
+          backgroundColor:'#ecf0f1'
       }
       ,btn:{
           alignItems:'center',

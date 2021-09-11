@@ -50,16 +50,35 @@ export default function profilec({navigation}){
             <View style={styles.imgp}>
             <Image   source={require('../images/teamwork.png')}/></View>
             <View><Text style={styles.pinfo}>INFORMATION PERSONNELLES</Text></View>
-            <TouchableOpacity>
-                <View style={styles.chngb}>
-                    <Image source={require('../images/icons8-modifier-le-compte-32.png')   } tintColor='white' 
-                      /><Text style={{fontSize:20,color:'white',fontFamily:'jl'}}>Modifier Vous Information Personnelles</Text>
-                </View>
-            </TouchableOpacity>
-            <View style={styles.info}>
+            <View>
                 <View>
                 {designers.map((designerObject) => {
-                    return <Text style={styles.infou}><Image  source={require('../images/i1.png')}/><Text style={styles.names}>{'  '}{designerObject.name} {designerObject.prenom}</Text>{'\n'}{'\n'}<Image  source={require('../images/i2.png')}/>{'  '}{designerObject.cadreSur}{'\n'}<Image  source={require('../images/i3.png')}/>{'  '}{designerObject.rib}{'\n'}<Image  source={require('../images/i4.png')}/>{'  '}{designerObject.CIN}{'\n'}<Image  source={require('../images/i5.png')}/>{'  '}{designerObject.ntel}</Text>
+                    return <View style={{alignItems:'center'}}>
+                        <View style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}>
+                        <Image tintColor='white' source={require('../images/i1.png')}/>
+                        <Text style={styles.names}>{designerObject.name} {designerObject.prenom}</Text></View>
+                        <Text style={{color:'white',fontSize:15}}>_______________________________________________</Text>
+                        <View style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}>
+                            <Image tintColor='white' source={require('../images/i2.png')}/>
+                            <Text style={{color:'white',fontFamily:'jl',fontSize:20}}>{designerObject.cadreSur}</Text></View>
+                            <Text style={{color:'white',fontSize:15}}>_______________________________________________</Text>
+                        <View style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}><Image tintColor='white'  source={require('../images/i3.png')}/>
+                        <Text  style={{color:'white',fontFamily:'jl',fontSize:20}}>{designerObject.rib}</Text></View>
+                        <Text style={{color:'white',fontSize:15}}>_______________________________________________</Text>
+                        <View style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}><Image tintColor='white' source={require('../images/i4.png')} />
+                        <Text  style={{color:'white',fontFamily:'jl',fontSize:20}}>{designerObject.CIN}</Text></View>
+                        <Text style={{color:'white',fontSize:15}}>_______________________________________________</Text>
+                        <View style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}><Image  tintColor='white' source={require('../images/i5.png')}/>
+                        <Text  style={{color:'white',fontFamily:'jl',fontSize:20}}>{designerObject.ntel}</Text>
+                        </View>
+                        <Text style={{color:'white',fontSize:15}}>_______________________________________________</Text>
+                        <TouchableOpacity>
+                            <View style={styles.chngb}>
+                                <Image source={require('../images/icons8-modifier-le-compte-32.png')   } tintColor='white' 
+                                /><Text style={{fontSize:20,color:'white',fontFamily:'jl'}}>Modifier Vous Information Personnelles</Text>
+                            </View>
+                        </TouchableOpacity>
+                        </View>
                     
                 })}
                 </View>
@@ -72,14 +91,15 @@ export default function profilec({navigation}){
 const styles=StyleSheet.create({
     imgp:{
         position:'absolute',
-        top:30,
+        top:20,
         right:8,
     },
     name:{
         fontSize:20,
         textAlign:'center',
         margin:15
-        ,fontFamily:'jl'
+        ,fontFamily:'jl',
+        color:'white'
         
     }
     ,info:{
@@ -106,7 +126,9 @@ const styles=StyleSheet.create({
     },
     names:{
         fontSize:40,
-        fontFamily:'jl'
+        fontFamily:'jl',
+        textAlign:'center',
+        color:'white'
     },
     pinfo:{
         color:'white',
