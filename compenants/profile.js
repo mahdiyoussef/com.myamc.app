@@ -72,7 +72,9 @@ export default function profilec({navigation}){
                         <Text  style={{color:'white',fontFamily:'jl',fontSize:20}}>{designerObject.ntel}</Text>
                         </View>
                         <Text style={{color:'white',fontSize:15}}>_______________________________________________</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{
+                            navigation.navigate('change',{keyUser:designers.keyuser})
+                        }}>
                             <View style={styles.chngb}>
                                 <Image source={require('../images/icons8-modifier-le-compte-32.png')   } tintColor='white' 
                                 /><Text style={{fontSize:20,color:'white',fontFamily:'jl'}}>Modifier Vous Information Personnelles</Text>

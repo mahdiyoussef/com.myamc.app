@@ -8,12 +8,18 @@ import navbutton from "../compenants/navbutton";
 import dossiers from "../compenants/dossiers";
 import demandes from "../compenants/demande";
 import detailsdossier from "../compenants/detailsdossier";
+import optionschange from "../compenants/changeoption";
+import changerNpassowrd from "../compenants/changepassword";
+import changerNphone from "../compenants/changePhonenumber";
+import changerNrib from "../compenants/changerib";
+
 const screens={
+    
     seConnecter:{
         screen:login
         ,navigationOptions: {
             headerShown:false,
-          }
+        }
     },
     Senregistrer:{
         screen: Registre
@@ -57,6 +63,30 @@ const screens={
         ,navigationOptions: {
             headerShown:false,
           }
+    },
+    change:{
+        screen:optionschange,
+        navigationOptions:{
+            headerShown:false,
+        }
+    },
+    changerNpassword:{
+        screen:changerNpassowrd
+        ,navigationOptions:{
+            headerShown:false
+        }
+    },
+    changerNphone:{
+        screen:changerNphone
+        ,navigationOptions:{
+            headerShown:false
+        }
+    },
+    changerNrib:{
+        screen:changerNrib
+        ,navigationOptions:{
+            headerShown:false
+        }
     }
 }
 const HomeStack = createStackNavigator(screens);
