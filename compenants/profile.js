@@ -73,7 +73,7 @@ export default function profilec({navigation}){
                         </View>
                         <Text style={{color:'white',fontSize:15}}>_______________________________________________</Text>
                         <TouchableOpacity onPress={()=>{
-                            navigation.navigate('change',{keyUser:designers.keyuser})
+                            navigation.navigate('change',{keyUser:designerObject.keyuser,userId:designerObject.id,keyT:designerObject.keyT})
                         }}>
                             <View style={styles.chngb}>
                                 <Image source={require('../images/icons8-modifier-le-compte-32.png')   } tintColor='white' 

@@ -12,7 +12,37 @@ import * as Font from 'expo-font';
 export default function changerNrib ({navigation}){
     const [lastv,getlastv]=useState('');
     const [newV,setNewV]=useState('');
-    
+    const validate=()=>{
+        var id=navigation.getParam('userId');
+        var keyuser=navigation.getParam('keyUser');
+
+        var userlog=firebase.database().ref('sclient/');
+        userlog.on('value',(snapshot)=>{
+            snapshot.forEach((snap)=>{
+                console.log('entred')
+                const sclient=snap.val();
+                const rib=sclient['rib'];
+                const idUser=sclient['id'];
+                if(idUser===id){
+                    console.log('correct id')
+                    if(rib===lastv){
+                        console.log(keyuser);
+                        var updated=firebase.database()
+                        .ref('/sclient/'+keyuser)
+                        .update({
+                        rib:newV,
+                        }).then(() => Alert.alert("✔️ l'Operation à succes"));
+                    }
+                    else if(!rib===lastv){
+                        Alert.alert('⚠️ Rib incorrect')
+                    }
+
+                }else{
+                        Alert.alert('⚠️ information incorrect')
+                    }
+            })
+        })
+    }
         return(<View style={{width:'100%',height:'100%',alignItems:'center'}}>
             <View style={{marginTop:30,flexDirection:'row',paddingBottom:5,
                 borderRadius:12,
@@ -26,6 +56,12 @@ export default function changerNrib ({navigation}){
             <TextInput  style={styles.inp} value={lastv} placeholder="Entrez l'ancien Rib" onChangeText={(text)=>getlastv(text)} keyboardType='numeric' />
             <Text style={styles.ancien}>Nouveau Rib</Text>
             <TextInput style={styles.inp} value={newV} onChangeText={(text)=>setNewV(text)} placeholder="Entrez le Nouveau Rib" keyboardType='numeric'/>
+            <TouchableOpacity onPress={validate}>
+                    <View style={styles.valider}>
+                        <Image source={require('../images/check.png')}/>
+                        <Text style={{fontSize:30,fontFamily:'jl',color:'white'}}>Valider la Modification</Text>
+                    </View>
+                </TouchableOpacity>
         </View>)}
 
 const styles=StyleSheet.create({
@@ -47,9 +83,19 @@ const styles=StyleSheet.create({
         width:300,
         height:50,
         borderColor:'#00cec9',
-        fontSize:30,
+        fontSize:20,
         fontFamily:'jl',
         marginTop:20,
         textAlign:'center'
+    }
+    ,valider:{
+        borderRadius:12,
+        width:300,
+        height:50,
+        backgroundColor:'#00cec9',
+        marginTop:20,
+        alignItems:'center',
+        flexDirection:'row',
+        padding:15  
     }
 })

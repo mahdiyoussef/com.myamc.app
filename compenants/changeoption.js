@@ -23,13 +23,13 @@ export default function optionschange ({navigation}){
                 <Image source={require('../images/settings.png')}/>
                 <Text style={{fontSize:40,color:'white',fontFamily:'jl'}}>{' '}Modifier Vos information</Text>
             </View>
-            <TouchableOpacity style={{marginHorizontal:5,marginTop:30}} onPress={()=>navigation.navigate('changerNpassword',{keyUser:navigation.getParam('keyUser')})}>
+            <TouchableOpacity style={{marginHorizontal:5,marginTop:30}} onPress={()=>navigation.navigate('changerNpassword',{keyUser:navigation.getParam('keyUser'),userId:navigation.getParam('userId')})}>
             <Text style={styles.navway}>{' '}<Image  source={require('../images/padlock.png')} />{' '}Changer Votre mot de passe</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{marginHorizontal:5,marginTop:30}} onPress={()=>navigation.navigate('changerNphone',{keyUser:navigation.getParam('keyUser')})}>
+        <TouchableOpacity style={{marginHorizontal:5,marginTop:30}} onPress={()=>navigation.navigate('changerNphone',{keyUser:navigation.getParam('keyT'),userId:navigation.getParam('userId')})}>
             <Text style={styles.navway1}>{' '}<Image  source={require('../images/phones.png')} />{' '}Changer votre N° Telephone</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{marginHorizontal:5,marginTop:30}} onPress={()=>navigation.navigate('changerNrib',{keyUser:navigation.getParam('keyUser')})}>
+        <TouchableOpacity style={{marginHorizontal:5,marginTop:30}} onPress={()=>navigation.navigate('changerNrib',{keyUser:navigation.getParam('keyT'),userId:navigation.getParam('userId')})}>
             <Text style={styles.navway2}>{' '}<Image  source={require('../images/bank.png')} />{' '}Changer Votre RIB</Text>
         </TouchableOpacity>
 

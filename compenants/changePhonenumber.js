@@ -10,7 +10,34 @@ import './firebase/firebase';
 import * as Font from 'expo-font';
 
 export default function changerNphone ({navigation}){
-    
+    const validatenumberphone=()=>{
+        var id=navigation.getParam('userId');
+        var keyuser=navigation.getParam('keyUser');
+
+        var userl=firebase.database().ref('sclient/');
+        userl.on('value',(snapshot)=>{
+            snapshot.forEach((snap)=>{
+                console.log('entred')
+                const sclient=snap.val();
+                const ntel=sclient['ntel'];
+                const idUser=sclient['id'];
+                if(idUser===id){
+                    console.log('correct id')
+                    if(ntel===lastv){
+                        console.log(keyuser);
+                        var updated=firebase.database()
+                        .ref('/sclient/'+keyuser)
+                        .update({
+                        ntel:newV,
+                        }).then(() => Alert.alert("✔️ l'Operation à succes"));
+                    }
+
+                }else{
+                        Alert.alert('⚠️ information incorrect')
+                    }
+            })
+        })
+    }
     const [lastv,getlastv]=useState('');
     const [newV,setNewV]=useState('');
     return(<View style={{alignItems:'center'}}>
@@ -18,11 +45,16 @@ export default function changerNphone ({navigation}){
         borderRadius:12,backgroundColor:'#B53471',padding:14,marginHorizontal:10,alignItems:'center'}}>
             <Image  source={require('../images/phones.png')} /> 
             <Text style={styles.title}>{' '}Changer Votre N° Telephone </Text></View>
-            <Text style={styles.ancien}>Ancien Numero</Text>
+            <Text style={styles.ancien}>Ancien Numéro</Text>
             <TextInput  style={styles.inp} value={lastv} placeholder="Entrez l'ancien Numero" onChangeText={(text)=>getlastv(text)} keyboardType='numeric'/>
-            <Text style={styles.ancien}>Nouveau Numero</Text>
+            <Text style={styles.ancien}>Nouveau Numéro</Text>
             <TextInput style={styles.inp} value={newV} onChangeText={(text)=>setNewV(text)} placeholder="Entrez le Nouveau Rib" keyboardType='numeric'/>
-        
+            <TouchableOpacity onPress={validatenumberphone}>
+                    <View style={styles.valider}>
+                        <Image source={require('../images/check.png')}/>
+                        <Text style={{fontSize:30,fontFamily:'jl',color:'white'}}>Valider la Modification</Text>
+                    </View>
+                </TouchableOpacity>
     </View>)
 }
 const styles=StyleSheet.create({
@@ -44,9 +76,19 @@ const styles=StyleSheet.create({
         width:300,
         height:50,
         borderColor:'#00cec9',
-        fontSize:30,
+        fontSize:20,
         fontFamily:'jl',
         marginTop:20,
         textAlign:'center'
+    },
+    valider:{
+        borderRadius:12,
+        width:300,
+        height:50,
+        backgroundColor:'#00cec9',
+        marginTop:20,
+        alignItems:'center',
+        flexDirection:'row',
+        padding:15  
     }
 })

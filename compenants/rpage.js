@@ -80,7 +80,7 @@ export default class profiler extends Component{
                     renderItem={({item})=>{
                         return(<TouchableOpacity >
                         <View style={styles.flatl}><Image source={require('../images/attacher.png')}/>
-                        <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Demande:{item.nd}{'\n'}Date de depot:{item.jourd}/{item.moisd}/{item.anned}{'\n'}Objet:{item.objet}{'\n'}</Text></View>
+                        <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Demande:{item.nd}{'\n'}Date de depot:{item.jourd}/{item.moisd}/{item.anned}{'\n'}Objet:{item.objet}{'\n'}Status:{item.motif}</Text></View>
                         </TouchableOpacity>)
              }}/>
              </View>
@@ -91,32 +91,32 @@ export default class profiler extends Component{
             <View style={{alignItems:'center',marginTop:10}}><View style={styles.navigationbar}>
             <TouchableOpacity onPress={()=>this.props.navigation.navigate('MyAMC',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
-                    <Image source={require('../images/nav/ds.png')}/>
-                    <Text style={{fontFamily:'jl'}}>Dashboard</Text>
+                    <Image source={require('../images/nav/ds.png')} tintColor='white'/>
+                    <Text style={{fontFamily:'jl',color:'white'}}>Dashboard</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('Navigation',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
-                    <Image source={require('../images/nav/menu.png')}/>
-                    <Text style={{fontFamily:'jl'}}>Menu</Text>
+                    <Image source={require('../images/nav/menu.png')} tintColor='white'/>
+                    <Text style={{fontFamily:'jl',color:'white'}}>Menu</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('MesDossiers',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
-                    <Image source={require('../images/nav/dossiers.png')}/>
-                    <Text style={{fontFamily:'jl'}}>Mes Dossiers</Text>
+                    <Image source={require('../images/nav/dossiers.png')} tintColor='white'/>
+                    <Text style={{fontFamily:'jl',color:'white'}}>Mes Dossiers</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('MesDemandes',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
-                    <Image source={require('../images/nav/verifier.png')}/>
-                    <Text style={{fontFamily:'jl'}}>Mes Demandes</Text>
+                    <Image source={require('../images/nav/verifier.png')} tintColor='white'/>
+                    <Text style={{fontFamily:'jl',color:'white'}}>Mes Demandes</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('MonCompte',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
-                    <Image source={require('../images/nav/utilisateur-de-profil.png')}/>
-                    <Text style={{fontFamily:'jl'}}>Profile</Text>
+                    <Image source={require('../images/nav/utilisateur-de-profil.png')} tintColor='white'/>
+                    <Text style={{fontFamily:'jl',color:'white'}}>Profile</Text>
                 </View>
                 </TouchableOpacity>
             </View></View>
@@ -193,7 +193,8 @@ const styles=StyleSheet.create({
       ,navigationbar:{
           flexDirection:'row',
           borderRadius:10,
-          backgroundColor:'#ecf0f1'
+          backgroundColor:'#16a085',
+          padding:12
       }
       ,btn:{
           alignItems:'center',
