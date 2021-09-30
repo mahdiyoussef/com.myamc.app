@@ -8,6 +8,7 @@ import * as Font from 'expo-font';
 import { usrshow } from './login';
 import login from './login';
 
+
 export default function profilec({navigation}){
     
     useEffect(() => {
@@ -42,7 +43,7 @@ export default function profilec({navigation}){
         });
     }
 
-   
+    
     
     return(
         
@@ -51,31 +52,31 @@ export default function profilec({navigation}){
             <Image   source={require('../images/teamwork.png')}/></View>
             <View><Text style={styles.pinfo}>INFORMATION PERSONNELLES</Text></View>
             <View>
-                <View>
+                <View key={Math.floor(Math.random() * 12000)}>
                 {designers.map((designerObject) => {
                     return <View style={{alignItems:'center'}}>
-                        <View style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}>
+                        <View key={Math.floor(Math.random() * 12000)} style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}>
                         <Image tintColor='white' source={require('../images/i1.png')}/>
                         <Text style={styles.names}>{designerObject.name} {designerObject.prenom}</Text></View>
                         <Text style={{color:'white',fontSize:15}}>_______________________________________________</Text>
-                        <View style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}>
+                        <View key={Math.floor(Math.random() * 12000)} style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}>
                             <Image tintColor='white' source={require('../images/i2.png')}/>
                             <Text style={{color:'white',fontFamily:'jl',fontSize:20}}>{designerObject.cadreSur}</Text></View>
-                            <Text style={{color:'white',fontSize:15}}>_______________________________________________</Text>
-                        <View style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}><Image tintColor='white'  source={require('../images/i3.png')}/>
+                            <Text key={Math.floor(Math.random() * 12000)} style={{color:'white',fontSize:15}}>_______________________________________________</Text>
+                        <View key={Math.floor(Math.random() * 12000)} style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}><Image tintColor='white'  source={require('../images/i3.png')}/>
                         <Text  style={{color:'white',fontFamily:'jl',fontSize:20}}>{designerObject.rib}</Text></View>
                         <Text style={{color:'white',fontSize:15}}>_______________________________________________</Text>
-                        <View style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}><Image tintColor='white' source={require('../images/i4.png')} />
+                        <View key={Math.floor(Math.random() * 12000)} style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}><Image tintColor='white' source={require('../images/i4.png')} />
                         <Text  style={{color:'white',fontFamily:'jl',fontSize:20}}>{designerObject.CIN}</Text></View>
-                        <Text style={{color:'white',fontSize:15}}>_______________________________________________</Text>
-                        <View style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}><Image  tintColor='white' source={require('../images/i5.png')}/>
+                        <Text key={Math.floor(Math.random() * 12000)} style={{color:'white',fontSize:15}}>_______________________________________________</Text>
+                        <View key={Math.floor(Math.random() * 12000)} style={{marginTop:20,borderRadius:12,borderColor:'white',alignItems:'center'}}><Image  tintColor='white' source={require('../images/i5.png')}/>
                         <Text  style={{color:'white',fontFamily:'jl',fontSize:20}}>{designerObject.ntel}</Text>
                         </View>
-                        <Text style={{color:'white',fontSize:15}}>_______________________________________________</Text>
+                        <Text key={Math.floor(Math.random() * 12000)} style={{color:'white',fontSize:15}}>_______________________________________________</Text>
                         <TouchableOpacity onPress={()=>{
                             navigation.navigate('change',{keyUser:designerObject.keyuser,userId:designerObject.id,keyT:designerObject.keyT})
                         }}>
-                            <View style={styles.chngb}>
+                            <View key={Math.floor(Math.random() * 12000)} style={styles.chngb}>
                                 <Image source={require('../images/icons8-modifier-le-compte-32.png')   } tintColor='white' 
                                 /><Text style={{fontSize:20,color:'white',fontFamily:'jl'}}>Modifier Vous Information Personnelles</Text>
                             </View>

@@ -20,7 +20,7 @@ import * as Font from 'expo-font';
     
     <View style={styles.nav}>
         
-        <TouchableOpacity style={{marginHorizontal:5,marginTop:30}} onPress={()=>navigation.navigate('MyAMC')}>
+        <TouchableOpacity style={{marginHorizontal:5,marginTop:30}} onPress={()=>navigation.goBack()}>
             <Text style={styles.navway12}>{' '}<Image  source={require('../images/dashboard.png')} />{' '}Dashboard</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{marginHorizontal:5,marginTop:8}} onPress={()=>navigation.navigate('MonCompte',{id:navigation.getParam('id')})}>
@@ -32,11 +32,6 @@ import * as Font from 'expo-font';
         </TouchableOpacity>
         <TouchableOpacity style={{marginHorizontal:5,marginTop:8}} onPress={()=>navigation.navigate('MesDossiers',{id:navigation.getParam('id')})}>
         <Text style={styles.navway2}><Image source={require('../images/jn.png')}/>{' '}Mes Dossiers</Text>
-        </TouchableOpacity>
-            
-        <TouchableOpacity style={{marginHorizontal:5,marginTop:8}}>
-        <Text style={styles.navway3}><Image source={require('../images/guide.png')}/>{' '}Guide d'Application</Text>
-            
         </TouchableOpacity>
         <TouchableOpacity style={{marginHorizontal:5,marginTop:8}} onPress={()=>navigation.navigate('seConnecter')}>
         <Text style={styles.navway33}><Image source={require('../images/logout.png')}/>{' '}Se déconnecter</Text>

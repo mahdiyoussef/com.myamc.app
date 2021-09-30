@@ -14,18 +14,30 @@ export default class profiler extends Component{
         super(props);
         this.state={ 
         list:[],
-        ls:[]
+        ls:[],
+        rvac:0,
+        bf:0
         
         } }
         componentDidMount(){
             const dossiers=   firebase.database().ref('/dossiermedicales').on('value', (snapshot) =>{
                     var li = []
+                    var bfs=0;
+                    var  rvacs=0;
+                    let d=new Date();
                     snapshot.forEach((dossier)=>{
                       if(dossier.val().id===this.props.navigation.getParam('id')){
-                    li.push(dossier.val())
-                    }
+                          
+                            li.push(dossier.val())
+                            if(dossier.val().sort==="RVAC"){
+                                rvacs+=1;
+                                bfs+=parseInt(dossier.val().mntn);
+                            }
+                        }
                   })
-                 this.setState({list:li})
+                 this.setState({list:li});
+                 this.setState({rvac:rvacs})
+                 this.setState({bf:bfs})
                 });
                 const demandes=firebase.database().ref('/demandedeclient').on('value', (snapshot) =>{
                     var lis = []
@@ -44,8 +56,26 @@ export default class profiler extends Component{
             'jl':require('../assets/fonts/JosefinSans-Regular.ttf')
 
         })
-    
-    
+       /* const [rvac,setRvac]=useState(0);
+        const [bf,setBf]=useState(0);
+        const calc=()=>{
+            var lists=this.state.list;
+            var rvacs=0;
+            var bfs=0;
+            lists.map((item)=>{
+                if(item.sort="RVAC"){
+                    rvacs+=1;
+                    bfs+=item.mntn
+                }
+
+            })
+            setBf(bfs);
+            setRvac(rvacs);
+        }
+        useEffect(() => {
+            calc();
+        })*/
+        const listd=this.state.list.reverse();
     
     return(
 
@@ -54,11 +84,19 @@ export default class profiler extends Component{
                 <Image source={require('../images/MyAMCHorizontal.png')}/>
                 
             </View>
+            <View style={{marginHorizontal:5,marginTop:20}} >
+            <Text style={styles.navway12}>{' '}<Image  source={require('../images/dashboard.png')} />{' '}Dashboard</Text>
+        </View>
             <View>
             <View>
-               <Text style={styles.files}><Image source={require('../images/dossier.png')}/>   Mes Dossiers Medicales</Text>
+                <View style={styles.files} >
+                    <Text style={{fontFamily:'jl',color:'white',fontSize:30,marginBottom:15}}><Image source={require('../images/dossier.png')}/> Mes Dossiers Précédent </Text>
+                    <TouchableOpacity onPress={()=>{
+                        this.props.navigation.navigate('MesDossiers',{id:this.props.navigation.getParam('id')})
+                    }}><Text style={{fontSize:20,marginLeft:20,fontFamily:'jl',marginTop:10}}>Voir Tout</Text></TouchableOpacity>
+                    </View>
                <FlatList style={styles.flatg}
-                    data={this.state.list.reverse()}
+                    data={listd.slice(0,3)}
                     keyExtractor={(item)=>item.key}
                     renderItem={({item})=>{
                         return(<TouchableOpacity onPress={()=>this.props.navigation.navigate('Details',item)}>
@@ -66,56 +104,51 @@ export default class profiler extends Component{
                         <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Dossier:{item.nd}{'\n'}Date de Consultation:{item.jourc}/{item.moisc}/{item.annec}{'\n'}Status:{item.motif}{'\n'}{'<<< Appuyer pour voir les details >>>'}</Text></View>
                         </TouchableOpacity>)
              }}/>
-             <Text style={styles.ttl}>Nombre Total des Dossiers:{this.state.list.length}
+             <View style={styles.ttl}>
+             <Text style={{fontFamily:'jl',
+        color:'white',fontSize:20,textAlign:'center'}}>Total des Dossiers:{'\n'}{this.state.list.length}
              </Text>
-             <View style={styles.dmnd}>
-                 <Image style={{width:40,height:40}} source={require('../images/chat.png')}/>
-                 <Text style={{fontSize:30,color:'white',fontFamily:'jl',marginLeft:10}}>Mes Demandes</Text>
-                 
-             </View>
-             <View>
-             <FlatList style={{height:200}}
-                    data={this.state.ls.reverse()}
-                    keyExtractor={(item)=>item.key}
-                    renderItem={({item})=>{
-                        return(<TouchableOpacity >
-                        <View style={styles.flatl}><Image source={require('../images/attacher.png')}/>
-                        <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Demande:{item.nd}{'\n'}Date de depot:{item.jourd}/{item.moisd}/{item.anned}{'\n'}Objet:{item.objet}{'\n'}Status:{item.motif}</Text></View>
-                        </TouchableOpacity>)
-             }}/>
-             </View>
-             <Text style={styles.ttl}>Nombre Total des Demandes:{this.state.ls.length}
+             <Text style={{color:'white',textAlign:'center'}}>____________________________</Text>
+             <Text style={{fontFamily:'jl',
+        color:'white',fontSize:20,textAlign:'center',marginLeft:10}}>Dossiers Accepté:{'\n'}{(this.state.rvac)/this.state.list.length*100}%</Text>
+        <Text style={{color:'white',textAlign:'center'}}>____________________________</Text>
+        <Text style={{fontFamily:'jl',
+        color:'white',fontSize:20,textAlign:'center'}}>Total des Benifites:{'\n'}{this.state.bf*(0.1)} DH
              </Text>
+             <Text style={{color:'white',textAlign:'center'}}>____________________________</Text>
+             </View>
+             
             </View>
             </View>
             <View style={{alignItems:'center',marginTop:10}}><View style={styles.navigationbar}>
             <TouchableOpacity onPress={()=>this.props.navigation.navigate('MyAMC',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
-                    <Image source={require('../images/nav/ds.png')} tintColor='white'/>
+                    <Image source={require('../images/navbar/dashboard.png')} />
                     <Text style={{fontFamily:'jl',color:'white'}}>Dashboard</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('Navigation',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
-                    <Image source={require('../images/nav/menu.png')} tintColor='white'/>
+                    <Image source={require('../images/navbar/menu.png')} />
                     <Text style={{fontFamily:'jl',color:'white'}}>Menu</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('MesDossiers',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
-                    <Image source={require('../images/nav/dossiers.png')} tintColor='white'/>
+                    <Image source={require('../images/navbar/dossier.png')} />
                     <Text style={{fontFamily:'jl',color:'white'}}>Mes Dossiers</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('MesDemandes',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
-                    <Image source={require('../images/nav/verifier.png')} tintColor='white'/>
+                    <Image source={require('../images/navbar/bill.png')} />
                     <Text style={{fontFamily:'jl',color:'white'}}>Mes Demandes</Text>
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('MonCompte',{id:this.props.navigation.getParam('id')})}>
                 <View style={styles.btn}>
-                    <Image source={require('../images/nav/utilisateur-de-profil.png')} tintColor='white'/>
+                    <Image source={require('../images/navbar/man.png')} 
+                    />
                     <Text style={{fontFamily:'jl',color:'white'}}>Profile</Text>
                 </View>
                 </TouchableOpacity>
@@ -144,15 +177,13 @@ const styles=StyleSheet.create({
         
     }
     ,files:{
-        
-        fontSize:30
-        ,borderRadius:10
+        borderRadius:10
         ,marginTop:25,
         backgroundColor:'#f1c40f'
         ,padding:6,
         margin:5,
-        fontFamily:'jl',
-        color:'white'
+        flexDirection:'row'
+        
     }
     ,flatl:{
     
@@ -169,7 +200,7 @@ const styles=StyleSheet.create({
 
       }
       ,flatg:{
-          height:200
+          height:250
       },
       ttl:{
         fontSize:30
@@ -179,8 +210,8 @@ const styles=StyleSheet.create({
         backgroundColor:'#40739e'
         ,padding:6,
         margin:5,
-        fontFamily:'jl',
-        color:'white'
+        
+        
       },
       dmnd:{
         borderRadius:10
@@ -199,5 +230,14 @@ const styles=StyleSheet.create({
       ,btn:{
           alignItems:'center',
           marginRight:10
+      },
+      navway12:{
+          fontSize:50,
+          color:'white',
+          paddingBottom:10,
+          borderRadius:12,
+          backgroundColor:'#079992',
+          fontFamily:'jl'
+          
       }
 })

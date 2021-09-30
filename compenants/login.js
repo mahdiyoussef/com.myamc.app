@@ -10,18 +10,27 @@ import Registre from './registration';
 import './firebase/firebase';
 import profilec from './profile';
 import * as Font from 'expo-font';
-import { isLoaded } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
 export default function login ({navigation}){
-  const [data, setData] = useState('');
-  Font.loadAsync({
-    'query': require('../assets/fonts/query.ttf'),
-    'jl':require('../assets/fonts/JosefinSans-Regular.ttf')
+  const [load,checkload]=useState();
+  async function loadFonts() {
 
-})
-      
+    await Font.loadAsync({
+      'query': require('../assets/fonts/query.ttf'),
+      'jl':require('../assets/fonts/JosefinSans-Regular.ttf')
+
+    });
+    checkload(true);
+    
+
+  }
+  const [data, setData] = useState('');
+  useEffect(()=>{
+    loadFonts();
+  })
   const [designers, setDesigners] = useState([]);
-    function printUsers() {
+    const printUsers=()=> {
         var users = firebase.database().ref('/userlogin');
         users.on('value', (snapshot) => {
             snapshot.forEach((snap) => {
@@ -53,7 +62,10 @@ export default function login ({navigation}){
 
   const [usr,getusr]=useState('');
   const [mdp,getmdp]=useState('');
-  
+  if(!load){
+    return <AppLoading />
+  }
+ 
   return(<View style={styles.container}>
         <View style={styles.titletop}>
           <Image source={require('../images/login.png')}/>
@@ -64,7 +76,9 @@ export default function login ({navigation}){
             fontFamily:'jl'
           }}>Se Connecter à Votre {'\n'}Compte Amc</Text>
         </View>
-        <Image source={require('../images/MyAMCVertical.png')} />
+        <Image source={require('../images/MyAMCVertical.png')} style={{
+          resizeMode:'contain'
+        }}  />
         <View style={styles.inpone}>
           <Image source={require('../images/id-card.png')} style={{
             marginRight:20,
