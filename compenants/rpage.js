@@ -5,8 +5,6 @@ import { StyleSheet,ImageBackground,Text, View,TextInput,Button,TouchableOpacity
 import {StackNavigator,navigation} from 'react-navigation';
 import 'react-native-gesture-handler';
 import { render } from 'react-dom';
-import profilec from './profile';
-import navbutton from './navbutton';
 import * as Font from 'expo-font';
 import firebase from 'firebase';
 export default class profiler extends Component{
@@ -19,8 +17,8 @@ export default class profiler extends Component{
         bf:0
         
         } }
-        componentDidMount(){
-            const dossiers=   firebase.database().ref('/dossiermedicales').on('value', (snapshot) =>{
+        async componentDidMount(){
+            const dossiers=  await firebase.database().ref('/dossiermedicales').on('value', (snapshot) =>{
                     var li = []
                     var bfs=0;
                     var  rvacs=0;
@@ -35,7 +33,7 @@ export default class profiler extends Component{
                             }
                         }
                   })
-                 this.setState({list:li});
+                 this.setState({list:li.reverse()});
                  this.setState({rvac:rvacs})
                  this.setState({bf:bfs})
                 });
@@ -56,47 +54,28 @@ export default class profiler extends Component{
             'jl':require('../assets/fonts/JosefinSans-Regular.ttf')
 
         })
-       /* const [rvac,setRvac]=useState(0);
-        const [bf,setBf]=useState(0);
-        const calc=()=>{
-            var lists=this.state.list;
-            var rvacs=0;
-            var bfs=0;
-            lists.map((item)=>{
-                if(item.sort="RVAC"){
-                    rvacs+=1;
-                    bfs+=item.mntn
-                }
-
-            })
-            setBf(bfs);
-            setRvac(rvacs);
-        }
-        useEffect(() => {
-            calc();
-        })*/
-        const listd=this.state.list.reverse();
+        const listd=this.state.list;
     
     return(
 
         <View>
             <View style={styles.nav}>
-                <Image source={require('../images/MyAMCHorizontal.png')}/>
+                <Image key='logosaham' source={require('../images/MyAMCHorizontal.png')}/>
                 
             </View>
             <View style={{marginHorizontal:5,marginTop:20}} >
-            <Text style={styles.navway12}>{' '}<Image  source={require('../images/dashboard.png')} />{' '}Dashboard</Text>
+            <Text  style={styles.navway12}>{' '}<Image  source={require('../images/dashboard.png')} />{' '}Dashboard</Text>
         </View>
             <View>
             <View>
                 <View style={styles.files} >
-                    <Text style={{fontFamily:'jl',color:'white',fontSize:30,marginBottom:15}}><Image source={require('../images/dossier.png')}/> Mes Dossiers Précédent </Text>
-                    <TouchableOpacity onPress={()=>{
+                    <Text  style={{fontFamily:'jl',color:'white',fontSize:30,marginBottom:15}}><Image source={require('../images/dossier.png')}/> Mes Dossiers Précédent </Text>
+                    <TouchableOpacity key='allshow' onPress={()=>{
                         this.props.navigation.navigate('MesDossiers',{id:this.props.navigation.getParam('id')})
-                    }}><Text style={{fontSize:20,marginLeft:20,fontFamily:'jl',marginTop:10}}>Voir Tout</Text></TouchableOpacity>
+                    }}><Text  style={{fontSize:20,marginLeft:20,fontFamily:'jl',marginTop:10}}>Voir Tout</Text></TouchableOpacity>
                     </View>
-               <FlatList style={styles.flatg}
-                    data={listd.slice(0,3)}
+               <FlatList key='flatlistfiles' style={styles.flatg}
+                    data={listd.slice(0,2)}
                     keyExtractor={(item)=>item.key}
                     renderItem={({item})=>{
                         return(<TouchableOpacity onPress={()=>this.props.navigation.navigate('Details',item)}>
@@ -105,17 +84,17 @@ export default class profiler extends Component{
                         </TouchableOpacity>)
              }}/>
              <View style={styles.ttl}>
-             <Text style={{fontFamily:'jl',
+             <Text  style={{fontFamily:'jl',
         color:'white',fontSize:20,textAlign:'center'}}>Total des Dossiers:{'\n'}{this.state.list.length}
              </Text>
              <Text style={{color:'white',textAlign:'center'}}>____________________________</Text>
-             <Text style={{fontFamily:'jl',
+             <Text  style={{fontFamily:'jl',
         color:'white',fontSize:20,textAlign:'center',marginLeft:10}}>Dossiers Accepté:{'\n'}{(this.state.rvac)/this.state.list.length*100}%</Text>
-        <Text style={{color:'white',textAlign:'center'}}>____________________________</Text>
+        <Text  style={{color:'white',textAlign:'center'}}>____________________________</Text>
         <Text style={{fontFamily:'jl',
         color:'white',fontSize:20,textAlign:'center'}}>Total des Benifites:{'\n'}{this.state.bf*(0.1)} DH
              </Text>
-             <Text style={{color:'white',textAlign:'center'}}>____________________________</Text>
+             <Text  style={{color:'white',textAlign:'center'}}>____________________________</Text>
              </View>
              
             </View>

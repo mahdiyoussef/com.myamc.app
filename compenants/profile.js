@@ -48,9 +48,9 @@ export default function profilec({navigation}){
     return(
         
         <View style={styles.con}>
-            <View style={styles.imgp}>
-            <Image   source={require('../images/teamwork.png')}/></View>
-            <View><Text style={styles.pinfo}>INFORMATION PERSONNELLES</Text></View>
+            
+            <View style={{marginLeft:12}}>
+                <Text style={styles.pinfo}>Information Personnelles</Text></View>
             <View>
                 <View key={Math.floor(Math.random() * 12000)}>
                 {designers.map((designerObject) => {
@@ -92,11 +92,7 @@ export default function profilec({navigation}){
 
 }
 const styles=StyleSheet.create({
-    imgp:{
-        position:'absolute',
-        top:20,
-        right:8,
-    },
+    
     name:{
         fontSize:20,
         textAlign:'center',
@@ -135,9 +131,10 @@ const styles=StyleSheet.create({
     },
     pinfo:{
         color:'white',
-        fontSize:40,
+        fontSize:30,
         margin:4,
-        fontFamily:'jl'
+        fontFamily:'jl',
+        textAlign:'center'
     },
     chngb:{
         marginTop:10,

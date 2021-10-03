@@ -38,7 +38,7 @@ export default class demandes extends Component{
           data={this.state.list}
           keyExtractor={(item)=>item.key}
           renderItem={({item})=>{
-             return(<TouchableOpacity onPress={()=>this.props.navigation.navigate('Details',item)} >
+             return(<TouchableOpacity >
                <View style={styles.flatl}><Image source={require('../images/attacher.png')}/>
                <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Demande:{item.nd}{'\n'}Date de depot:{item.jourd}/{item.moisd}/{item.anned}{'\n'}Objet:{item.objet}{'\n'}Status:{item.motif}</Text></View>
              </TouchableOpacity>)

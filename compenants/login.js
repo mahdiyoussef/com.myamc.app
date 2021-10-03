@@ -5,10 +5,8 @@ import { StyleSheet,ImageBackground,Text, View,TextInput,Button,TouchableOpacity
 import {StackNavigator, useTheme} from 'react-navigation';
 import firebase from 'firebase';
 import 'react-native-gesture-handler';
-import profiler from './rpage';
 import Registre from './registration';
 import './firebase/firebase';
-import profilec from './profile';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
@@ -44,7 +42,9 @@ export default function login ({navigation}){
                       console.log(user.mdp)
                       if(user.mdp === mdp){
                         navigation.navigate('MyAMC',user);
-                        console.log('correcrt mdp')
+                        console.log('correcrt mdp');
+                        getmdp('');
+                        getusr('');
                         
                       };
                     });
