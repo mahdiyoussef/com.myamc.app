@@ -9,6 +9,17 @@ import { render } from 'react-dom';
 import profilec from './profile';
 import navbutton from './navbutton';
 import * as Font from 'expo-font';
+function statusIcon(status){
+  if(status==="RVAC" || status==="RVCO" || status==="Accepter" ){
+      return(<View><Image source={require('../images/tick-mark.png')}/></View>)
+  }
+  else if(status==="en cours" || status==="ov"){
+      return(<View><Image source={require('../images/prg.png')}/></View>)
+  }
+  else{
+      return(<View><Image source={require('../images/warning.png')}/></View>)
+  }
+}
 export default class dossiers extends Component{
   
   
@@ -41,7 +52,7 @@ export default class dossiers extends Component{
           renderItem={({item})=>{
              return(
              <TouchableOpacity onPress={()=>this.props.navigation.navigate('Details',item)}>
-               <View style={styles.flatl}><Image source={require('../images/dossier.png')}/>
+               <View style={styles.flatl}>{statusIcon(item.sort)}
                <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Dossier:{item.nd}{'\n'}Date de Consultation:{item.jourc}/{item.moisc}/{item.annec}{'\n'}Status:{item.motif}{'\n'}{'<<< Appuyer pour voir les details >>>'}</Text></View>
              </TouchableOpacity>)
              }}/>

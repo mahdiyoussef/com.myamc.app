@@ -17,11 +17,12 @@ export default function optionschange ({navigation}){
             'jl':require('../assets/fonts/JosefinSans-Regular.ttf')
 
         })
+        /* '54a0ff'*/
         return(
         <View>
             <View style={{marginHorizontal:5,marginTop:40,borderRadius:12,backgroundColor:'#54a0ff',flexDirection:'row',alignItems:'center',paddingVertical:20}}>
                 <Image source={require('../images/settings.png')}/>
-                <Text style={{fontSize:40,color:'white',fontFamily:'jl'}}>{' '}Modifier Vos information</Text>
+                <Text style={{fontSize:35,color:'white',fontFamily:'jl'}}>{' '}Modifier Vos informations</Text>
             </View>
             <TouchableOpacity style={{marginHorizontal:5,marginTop:30}} onPress={()=>navigation.navigate('changerNpassword',{keyUser:navigation.getParam('keyUser'),userId:navigation.getParam('userId')})}>
             <Text style={styles.navway}>{' '}<Image  source={require('../images/padlock.png')} />{' '}Changer Votre mot de passe</Text>

@@ -8,30 +8,12 @@ import profiler from './rpage';
 import Registre from './registration';
 import * as Font from 'expo-font';
 import './firebase/firebase'
+import { not } from 'react-native-reanimated';
 
 export default function changerNpassowrd ({navigation}){
     const [lastv,getlastv]=useState('');
     const [newV,setNewV]=useState('');
-    const updatemsg=(number)=>{
-        if(number===1){
-            return(<View style={{borderRadius:12,flexDirection:'row',padding:15,margin:15,alignItems:'center',
-            backgroundColor:'#00b894'}}>
-                <Image source={require('../images/tick-mark.png')}/>
-                <Text style={{
-                    color:'white',fontSize:20,fontFamily:'jl'
-                }}>l'Operation à Succes</Text>
-            </View>);
-        }
-        else if(number===2){
-            return(<View style={{borderRadius:12,flexDirection:'row',padding:15,margin:15,alignItems:'center',
-            backgroundColor:'#00b894'}}>
-                <Image source={require('../images/warning.png')}/>
-                <Text style={{
-                    color:'white',fontSize:20,fontFamily:'jl'
-                }}>Information incorrect</Text>
-            </View>)
-        }
-    }
+    
     const validate=()=>{
         var id=navigation.getParam('userId');
         var keyuser=navigation.getParam('keyUser');
@@ -47,19 +29,18 @@ export default function changerNpassowrd ({navigation}){
                 if(idUser===id){
                     console.log('correct id')
                     if(mdpasse===lastv){
+                        
                         console.log('correct mdp check'+keyuser);
                         var updated=firebase.database()
                         .ref('/userlogin/'+keyuser)
                         .update({
                         mdp:newV,
                         }).then(() => Alert.alert("✅ l'Opération à Succès"));
-
+                        getlastv(newV); 
                     }
-                    else{
-                        Alert.alert("⚠️ Information Incorrect")
-                    }
+                    
 
-                }
+                } 
             })
         })
     }
@@ -79,7 +60,9 @@ export default function changerNpassowrd ({navigation}){
                         <Image source={require('../images/check.png')}/>
                         <Text style={{fontSize:30,fontFamily:'jl',color:'white'}}>Valider la Modification</Text>
                     </View>
+                    
                 </TouchableOpacity>
+                
         </View>)
     
 }

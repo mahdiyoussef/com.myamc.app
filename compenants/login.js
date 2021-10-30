@@ -120,7 +120,8 @@ export default function login ({navigation}){
 const styles = StyleSheet.create({
   container: {
     alignItems:'center',
-    height:'100%'
+    height:'100%',
+    width:'100%'
   },
   inpone:{
     marginTop:60,

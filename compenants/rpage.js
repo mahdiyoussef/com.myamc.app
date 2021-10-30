@@ -7,6 +7,17 @@ import 'react-native-gesture-handler';
 import { render } from 'react-dom';
 import * as Font from 'expo-font';
 import firebase from 'firebase';
+function statusIcon(status){
+    if(status==="RVAC" || status==="RVCO" || status==="Accepter" ){
+        return(<View><Image source={require('../images/tick-mark.png')}/></View>)
+    }
+    else if(status==="en cours" || status==="ov"){
+        return(<View><Image source={require('../images/prg.png')}/></View>)
+    }
+    else{
+        return(<View><Image source={require('../images/warning.png')}/></View>)
+    }
+}
 export default class profiler extends Component{
     constructor(props){
         super(props);
@@ -22,7 +33,6 @@ export default class profiler extends Component{
                     var li = []
                     var bfs=0;
                     var  rvacs=0;
-                    let d=new Date();
                     snapshot.forEach((dossier)=>{
                       if(dossier.val().id===this.props.navigation.getParam('id')){
                           
@@ -55,8 +65,9 @@ export default class profiler extends Component{
 
         })
         const listd=this.state.list;
-    
-    return(
+        
+        return(
+        
 
         <View>
             <View style={styles.nav}>
@@ -70,16 +81,16 @@ export default class profiler extends Component{
             <View>
                 <View style={styles.files} >
                     <Text  style={{fontFamily:'jl',color:'white',fontSize:30,marginBottom:15}}><Image source={require('../images/dossier.png')}/> Mes Dossiers Précédent </Text>
-                    <TouchableOpacity key='allshow' onPress={()=>{
+                    <TouchableOpacity onPress={()=>{
                         this.props.navigation.navigate('MesDossiers',{id:this.props.navigation.getParam('id')})
                     }}><Text  style={{fontSize:20,marginLeft:20,fontFamily:'jl',marginTop:10}}>Voir Tout</Text></TouchableOpacity>
                     </View>
-               <FlatList key='flatlistfiles' style={styles.flatg}
+               <FlatList  style={styles.flatg}
                     data={listd.slice(0,2)}
                     keyExtractor={(item)=>item.key}
                     renderItem={({item})=>{
-                        return(<TouchableOpacity onPress={()=>this.props.navigation.navigate('Details',item)}>
-                        <View style={styles.flatl}><Image source={require('../images/dossier.png')}/>
+                        return(<TouchableOpacity key={item.id} onPress={()=>this.props.navigation.navigate('Details',item)}>
+                        <View key={item.id} style={styles.flatl}>{statusIcon(item.sort)}
                         <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Dossier:{item.nd}{'\n'}Date de Consultation:{item.jourc}/{item.moisc}/{item.annec}{'\n'}Status:{item.motif}{'\n'}{'<<< Appuyer pour voir les details >>>'}</Text></View>
                         </TouchableOpacity>)
              }}/>

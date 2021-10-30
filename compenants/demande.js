@@ -9,6 +9,17 @@ import { render } from 'react-dom';
 import profilec from './profile';
 import navbutton from './navbutton';
 import * as Font from 'expo-font';
+function statusIcon(status){
+  if(status==="Accepter" ){
+      return(<View><Image source={require('../images/tick-mark.png')}/></View>)
+  }
+  else if(status==="en cours" ){
+      return(<View><Image source={require('../images/prg.png')}/></View>)
+  }
+  else{
+      return(<View><Image source={require('../images/warning.png')}/></View>)
+  }
+}
 export default class demandes extends Component{
   
   constructor(props){
@@ -39,7 +50,7 @@ export default class demandes extends Component{
           keyExtractor={(item)=>item.key}
           renderItem={({item})=>{
              return(<TouchableOpacity >
-               <View style={styles.flatl}><Image source={require('../images/attacher.png')}/>
+               <View style={styles.flatl}>{statusIcon(item.motif)}
                <Text style={{fontFamily:'jl',color:'white',fontSize:25,}}>N° Demande:{item.nd}{'\n'}Date de depot:{item.jourd}/{item.moisd}/{item.anned}{'\n'}Objet:{item.objet}{'\n'}Status:{item.motif}</Text></View>
              </TouchableOpacity>)
              }}/>
