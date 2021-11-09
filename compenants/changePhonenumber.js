@@ -10,6 +10,15 @@ import './firebase/firebase';
 import * as Font from 'expo-font';
 
 export default function changerNphone ({navigation}){
+    let [sign,getsign]=useState("");
+    const rtv=()=>{
+        if(sign==="cc"){
+            return(<View style={{flexDirection:'row',alignItems:'center'}}><Image source={require('../images/tick-mark.png')} /><Text style={{fontFamily:'jl',color:'green',fontSize:20}}>opération à succès</Text></View>)
+        }
+        else if(sign==="nc"){
+            return(<View style={{flexDirection:'row',alignItems:'center'}}><Image source={require('../images/warning.png')} /><Text style={{fontFamily:'jl',color:'red',fontSize:20}}>information incorrect</Text></View>)
+        }
+    }
     const validatenumberphone=()=>{
         var id=navigation.getParam('userId');
         var keyuser=navigation.getParam('keyUser');
@@ -29,17 +38,23 @@ export default function changerNphone ({navigation}){
                         .ref('/sclient/'+keyuser)
                         .update({
                         ntel:newV,
-                        }).then(() => Alert.alert("✔️ l'Operation à succes"));
-                    }
+                        }).then(() => {getsign("cc")
+                            
 
-                }else{
-                        Alert.alert('⚠️ information incorrect')
+                    });
+                    getlastv(newV);
                     }
+                    else if(ntel!=lastv && sign!="cc"){
+                        getsign("nc");
+                    }
+                    
+
+                }
             })
         })
     }
-    const [lastv,getlastv]=useState('');
-    const [newV,setNewV]=useState('');
+    let [lastv,getlastv]=useState('');
+    let [newV,setNewV]=useState('');
     return(<View style={{alignItems:'center'}}>
         <View style={{marginTop:30,flexDirection:'row',
         borderRadius:12,backgroundColor:'#B53471',padding:14,marginHorizontal:10,alignItems:'center'}}>
@@ -48,13 +63,14 @@ export default function changerNphone ({navigation}){
             <Text style={styles.ancien}>Ancien Numéro</Text>
             <TextInput  style={styles.inp} value={lastv} placeholder="Entrez l'ancien Numero" onChangeText={(text)=>getlastv(text)} keyboardType='numeric'/>
             <Text style={styles.ancien}>Nouveau Numéro</Text>
-            <TextInput style={styles.inp} value={newV} onChangeText={(text)=>setNewV(text)} placeholder="Entrez le Nouveau Rib" keyboardType='numeric'/>
+            <TextInput style={styles.inp} value={newV} onChangeText={(text)=>setNewV(text)} placeholder="Entrez le Nouveau Numero" keyboardType='numeric'/>
             <TouchableOpacity onPress={validatenumberphone}>
                     <View style={styles.valider}>
                         <Image source={require('../images/check.png')}/>
                         <Text style={{fontSize:30,fontFamily:'jl',color:'white'}}>Valider la Modification</Text>
                     </View>
                 </TouchableOpacity>
+            <View>{rtv()}</View>
     </View>)
 }
 const styles=StyleSheet.create({

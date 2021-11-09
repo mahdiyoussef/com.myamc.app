@@ -13,7 +13,15 @@ import { not } from 'react-native-reanimated';
 export default function changerNpassowrd ({navigation}){
     const [lastv,getlastv]=useState('');
     const [newV,setNewV]=useState('');
-    
+    const [sign,getsign]=useState("");
+    const rtv=()=>{
+        if(sign==="cc"){
+            return(<View style={{flexDirection:'row',alignItems:'center'}}><Image source={require('../images/tick-mark.png')} /><Text style={{fontFamily:'jl',color:'green',fontSize:20}}>opération à succès</Text></View>)
+        }
+        else if(sign==="nc"){
+            return(<View style={{flexDirection:'row',alignItems:'center'}}><Image source={require('../images/warning.png')} /><Text style={{fontFamily:'jl',color:'red',fontSize:20}}>information incorrect</Text></View>)
+        }
+    }
     const validate=()=>{
         var id=navigation.getParam('userId');
         var keyuser=navigation.getParam('keyUser');
@@ -35,8 +43,12 @@ export default function changerNpassowrd ({navigation}){
                         .ref('/userlogin/'+keyuser)
                         .update({
                         mdp:newV,
-                        }).then(() => Alert.alert("✅ l'Opération à Succès"));
+                        }).then();
+                        getsign("cc");
                         getlastv(newV); 
+                    }
+                    else if(lastv!=mdpasse){
+                        getsign("nc");
                     }
                     
 
@@ -62,7 +74,7 @@ export default function changerNpassowrd ({navigation}){
                     </View>
                     
                 </TouchableOpacity>
-                
+                <View>{rtv()}</View>
         </View>)
     
 }

@@ -12,6 +12,12 @@ import AppLoading from 'expo-app-loading';
 
 export default function login ({navigation}){
   const [load,checkload]=useState();
+  const [sign,getsign]=useState('');
+  const rtv=()=>{
+    if(sign==="nc"){
+        return(<View style={{flexDirection:'row',alignItems:'center'}}><Image source={require('../images/warning.png')} /><Text style={{fontFamily:'jl',color:'red',fontSize:20}}>information incorrect</Text></View>)
+    }
+}
   async function loadFonts() {
 
     await Font.loadAsync({
@@ -45,8 +51,11 @@ export default function login ({navigation}){
                         console.log('correcrt mdp');
                         getmdp('');
                         getusr('');
-                        
-                      };
+                        getsign('');
+                      }
+                      else{
+                        getsign('nc');
+                      }
                     });
                 };
                 
@@ -97,6 +106,7 @@ export default function login ({navigation}){
         Se Connecter
       </Text>
       </TouchableOpacity >
+      <View>{rtv()}</View>
         <Text style={styles.txts}>Pour S'inscrire sur le Service maladie{'\n'}complémentaire  cliquer sur:</Text>
 
           

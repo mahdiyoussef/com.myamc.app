@@ -12,6 +12,15 @@ import * as Font from 'expo-font';
 export default function changerNrib ({navigation}){
     const [lastv,getlastv]=useState('');
     const [newV,setNewV]=useState('');
+    const [sign,getsign]=useState("");
+    const rtv=()=>{
+        if(sign==="cc"){
+            return(<View style={{flexDirection:'row',alignItems:'center'}}><Image source={require('../images/tick-mark.png')} /><Text style={{fontFamily:'jl',color:'green',fontSize:20}}>opération à succès</Text></View>)
+        }
+        else if(sign==="nc"){
+            return(<View style={{flexDirection:'row',alignItems:'center'}}><Image source={require('../images/warning.png')} /><Text style={{fontFamily:'jl',color:'red',fontSize:20}}>information incorrect</Text></View>)
+        }
+    }
     const validate=()=>{
         var id=navigation.getParam('userId');
         var keyuser=navigation.getParam('keyUser');
@@ -31,15 +40,14 @@ export default function changerNrib ({navigation}){
                         .ref('/sclient/'+keyuser)
                         .update({
                         rib:newV,
-                        }).then(() => Alert.alert("✔️ l'Operation à succes"));
+                        }).then(() => getsign("cc"));
+                        getlastv(newV);
                     }
-                    else if(!rib===lastv){
-                        Alert.alert('⚠️ Rib incorrect')
+                    else if(rib!=lastv){
+                        getsign("nc");
                     }
 
-                }else{
-                        Alert.alert('⚠️ information incorrect')
-                    }
+                }
             })
         })
     }
@@ -62,6 +70,7 @@ export default function changerNrib ({navigation}){
                         <Text style={{fontSize:30,fontFamily:'jl',color:'white'}}>Valider la Modification</Text>
                     </View>
                 </TouchableOpacity>
+                <View>{rtv()}</View>
         </View>)}
 
 const styles=StyleSheet.create({
